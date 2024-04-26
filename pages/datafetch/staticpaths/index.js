@@ -7,11 +7,8 @@ import { FaPencilAlt, FaTimes } from "react-icons/fa";
 
 export default function StaticPaths({ data }) {
   const router = useRouter();
-  const [time, setTime] = useState(moment().format("YYYY-MM-DD HH:mm:ss a"));
-  setInterval(() => {
-    setTime(moment().format("YYYY-MM-DD HH:mm:ss a"));
-    console.log(time);
-  }, [1000]);
+  var time = moment().format("YYYY-MM-DD HH:mm:ss a");
+
   return (
     <Layout title={"StaticPaths Page"}>
       <h1>StaticPaths</h1>

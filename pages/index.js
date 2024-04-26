@@ -5,11 +5,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [time, setTime] = useState(moment().format("YYYY-MM-DD HH:mm:ss a"));
-  setInterval(() => {
-    setTime(moment().format("YYYY-MM-DD HH:mm:ss a"));
-    console.log(time);
-  }, [1000]);
+  var time = moment().format("YYYY-MM-DD HH:mm:ss a");
+
   return (
     <Layout title={"Data Fetching"}>
       <div className={styles.layout}>
