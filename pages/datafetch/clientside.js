@@ -7,8 +7,12 @@ import { FaPencilAlt, FaTimes } from "react-icons/fa";
 
 export default function ClientSideFetch() {
   const [data, setData] = useState();
-  const time = moment().format("YYYY-MM-DD HH:mm:ss a");
   const router = useRouter();
+  const [time, setTime] = useState(moment().format("YYYY-MM-DD HH:mm:ss a"));
+  setInterval(() => {
+    setTime(moment().format("YYYY-MM-DD HH:mm:ss a"));
+    console.log(time);
+  }, [1000]);
 
   useEffect(() => {
     fetch(`${API_URL}`)
@@ -33,31 +37,19 @@ export default function ClientSideFetch() {
           </tr>
         </thead>
         <tbody>
-          {data?.map((val) => {
-            return (
-              <tr key={val.id}>
-                <td>{val.name}</td>
-                <td>{val.email}</td>
-                <td>{val.username}</td>
-                <td>{val.address.city}</td>
-                <td>{val.company.name}</td>
-                <td>{val.website}</td>
-                <td style={{ display: "flex" }}>
-                  <button
-                    className="btn-secondary"
-                    onClick={() =>
-                      router.push(`/datafetch/staticpaths/edit/${val.id}`)
-                    }
-                  >
-                    <FaPencilAlt /> Edit
-                  </button>
-                  <button className="btn-delete">
-                    <FaTimes /> Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          {data?.length > 0 &&
+            data?.map((val) => {
+              return (
+                <tr key={val?.id}>
+                  <td>{val?.name}</td>
+                  <td>{val?.email}</td>
+                  <td>{val?.username}</td>
+                  <td>{val?.address?.city}</td>
+                  <td>{val?.company?.name}</td>
+                  <td>{val?.website}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
       <div onClick={() => router.push("/")} className="back">

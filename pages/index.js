@@ -2,9 +2,14 @@ import Layout from "@/components/Layout";
 import styles from "@/styles/Home.module.css";
 import moment from "moment";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const time = moment().format("YYYY-MM-DD HH:mm:ss a");
+  const [time, setTime] = useState(moment().format("YYYY-MM-DD HH:mm:ss a"));
+  setInterval(() => {
+    setTime(moment().format("YYYY-MM-DD HH:mm:ss a"));
+    console.log(time);
+  }, [1000]);
   return (
     <Layout title={"Data Fetching"}>
       <div className={styles.layout}>
