@@ -52,7 +52,7 @@ export default function ServerSideProps({ data, time, date }) {
 export async function getServerSideProps() {
   const res = await fetch(`${API_URL}`);
   const data = await res.json();
-  const time = new Date().toLocaleTimeString();
+  var time = new Date().toLocaleTimeString();
   const date = new Date().toLocaleDateString();
   return {
     props: { data, time, date },
