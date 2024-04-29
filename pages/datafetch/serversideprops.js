@@ -52,7 +52,9 @@ export default function ServerSideProps({ data, time, date }) {
 export async function getServerSideProps() {
   const res = await fetch(`${API_URL}`);
   const data = await res.json();
-  var time = new Date().toLocaleTimeString();
+  var time = new Date().toLocaleTimeString("en-IN", {
+    timeZone: "Asia/Kolkata",
+  });
   const date = new Date().toLocaleDateString();
   return {
     props: { data, time, date },
