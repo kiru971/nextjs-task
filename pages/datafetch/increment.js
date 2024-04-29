@@ -11,9 +11,6 @@ export default function Increment({ data, time, date }) {
     <Layout title={"Increment Page"}>
       <h1>Increment</h1>
 
-      <button className="btn" onClick={() => setCount(count + 1)}>
-        click
-      </button>
       <table>
         <thead>
           <tr>
