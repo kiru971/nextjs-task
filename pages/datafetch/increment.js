@@ -4,13 +4,17 @@ import moment from "moment";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function Increment({ data }) {
+export default function Increment({ data, time }) {
   const router = useRouter();
-  var time = moment().format("YYYY-MM-DD HH:mm:ss a");
 
+  const [count, setCount] = useState(0);
   return (
     <Layout title={"Increment Page"}>
       <h1>Increment</h1>
+      <h2>Count : {count}</h2>
+      <button className="btn" onClick={() => setCount(count + 1)}>
+        click
+      </button>
       <table>
         <thead>
           <tr>
@@ -53,10 +57,10 @@ export default function Increment({ data }) {
 export async function getStaticProps() {
   const res = await fetch(`${API_URL}`);
   const data = await res.json();
-  const count = 0;
+  const time = new Date().toLocaleTimeString();
 
   return {
-    props: { data },
+    props: { data, time },
     revalidate: 10,
   };
 }

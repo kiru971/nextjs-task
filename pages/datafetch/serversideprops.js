@@ -4,9 +4,8 @@ import moment from "moment";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function ServerSideProps({ data }) {
+export default function ServerSideProps({ data, time }) {
   const router = useRouter();
-  var time = moment().format("YYYY-MM-DD HH:mm:ss a");
 
   return (
     <Layout title={"ServerSide Page"}>
@@ -53,7 +52,8 @@ export default function ServerSideProps({ data }) {
 export async function getServerSideProps() {
   const res = await fetch(`${API_URL}`);
   const data = await res.json();
+  const time = new Date().toLocaleTimeString();
   return {
-    props: { data },
+    props: { data, time },
   };
 }

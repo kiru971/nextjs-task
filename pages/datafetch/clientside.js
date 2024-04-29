@@ -8,12 +8,14 @@ import { FaPencilAlt, FaTimes } from "react-icons/fa";
 export default function ClientSideFetch() {
   const [data, setData] = useState();
   const router = useRouter();
-  var time = moment().format("YYYY-MM-DD HH:mm:ss a");
+  const [time, setTime] = useState();
+  console.log(time);
 
   useEffect(() => {
     fetch(`${API_URL}`)
       .then((res) => res.json())
       .then((data) => setData(data));
+    setTime(new Date().toLocaleTimeString());
   }, []);
 
   return (

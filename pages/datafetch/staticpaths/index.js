@@ -5,9 +5,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
 
-export default function StaticPaths({ data }) {
+export default function StaticPaths({ data, time }) {
   const router = useRouter();
-  var time = moment().format("YYYY-MM-DD HH:mm:ss a");
 
   return (
     <Layout title={"StaticPaths Page"}>
@@ -66,8 +65,9 @@ export default function StaticPaths({ data }) {
 export async function getStaticProps() {
   const res = await fetch(`${API_URL}`);
   const data = await res.json();
+  const time = new Date().toLocaleTimeString();
   return {
-    props: { data },
+    props: { data, time },
     revalidate: 1,
   };
 }
