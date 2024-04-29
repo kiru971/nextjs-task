@@ -4,7 +4,7 @@ import moment from "moment";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function StaticProps({ data, time }) {
+export default function StaticProps({ data, time, date }) {
   const router = useRouter();
 
   return (
@@ -43,7 +43,8 @@ export default function StaticProps({ data, time }) {
         {"<"} Go Back
       </div>
       <div className="current">
-        <b>Current Timestamp:</b> {time}
+        <b>Current Timestamp:</b>
+        {date} {time}
       </div>
     </Layout>
   );
@@ -53,7 +54,8 @@ export async function getStaticProps() {
   const res = await fetch(`${API_URL}`);
   const data = await res.json();
   const time = new Date().toLocaleTimeString();
+  const date = new Date().toLocaleDateString();
   return {
-    props: { data, time },
+    props: { data, time, date },
   };
 }

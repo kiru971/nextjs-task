@@ -9,6 +9,7 @@ export default function ClientSideFetch() {
   const [data, setData] = useState();
   const router = useRouter();
   const [time, setTime] = useState();
+  const [date, setDate] = useState();
   console.log(time);
 
   useEffect(() => {
@@ -16,6 +17,7 @@ export default function ClientSideFetch() {
       .then((res) => res.json())
       .then((data) => setData(data));
     setTime(new Date().toLocaleTimeString());
+    setDate(new Date().toLocaleDateString());
   }, []);
 
   return (
