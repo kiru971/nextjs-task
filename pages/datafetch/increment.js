@@ -7,11 +7,10 @@ import { useState } from "react";
 export default function Increment({ data, time, date }) {
   const router = useRouter();
 
-  const [count, setCount] = useState(0);
   return (
     <Layout title={"Increment Page"}>
       <h1>Increment</h1>
-      <h2>Count : {count}</h2>
+
       <button className="btn" onClick={() => setCount(count + 1)}>
         click
       </button>
