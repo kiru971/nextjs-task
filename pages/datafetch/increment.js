@@ -59,6 +59,7 @@ export async function getStaticProps() {
   const date = new Date().toLocaleDateString();
 
   return {
-    props: { data, time, date, revalidate: 10 },
+    props: { data, time, date },
+    revalidate: 10,
   };
 }
