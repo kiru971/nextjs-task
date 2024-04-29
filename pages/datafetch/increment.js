@@ -53,7 +53,7 @@ export default function Increment({ data, time, date }) {
 export async function getStaticProps() {
   const res = await fetch(`${API_URL}`);
   const data = await res.json();
-  var time = new Date().toLocaleTimeString();
+  var time = moment().format("YYYY-MM-DD HH:mm:ss a");
   const date = new Date().toLocaleDateString();
 
   return {
